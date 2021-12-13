@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,700;1,900&display=swap");
+
+:root {
+  --light-blue: #daf6fc;
+  --primary: #0b70dd;
+  --light-primary: #10b3d6;
+  --dark-blue: #3d445b;
+  --secondary: #e92b5f;
+  --light-secondary: #e92b5f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  background-color: var(--light-blue);
+}
+
+.header {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 1.5% 6%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    flex : 1 1 10% ;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.link-items {
+    list-style: none;
+}
+
+.link-items > a {
+    text-decoration: none;
+    color: var(--dark-blue);
+}
+
+.link-items > a:hover {
+    text-decoration: underline;
+    color: var(--secondary);
+
+}
+
+#active {
+    text-decoration: underline;
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.links {
+    flex : 1 1 5% ;
+}
+
+.link-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btns {
+    flex : 1 1 10% ;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btns > button {
+    padding: 3% 5%;
+    font-size: 80%;
+    font-weight: bolder;
+    border-radius: 0.5rem;
+}
+
+#loginBtn {
+    margin-right: 5%;
+    background-color: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+#registerBtn {
+    margin-right: 5%;
+    background-color: var(--primary);
+    color: white;
+    border: 2px solid var(--primary);
+}
+
+.main {
+    margin: 20% 6%;
+    height: 100vh;
+}
+
+.footer {
+    height: 10vh;
+    background-color: var(--dark-blue);
+    padding: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.footer > p {
+    color :white
+}
+
+.footer > p > a {
+    color : var(--secondary)
+}
