@@ -7,21 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/register.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="./js/main.js"></script>
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/61b799abc82c976b71c13a90/1fmqj0hpk';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
+   
 </head>
 <body>
     <header class="header">
@@ -36,7 +24,7 @@
             </div>
 
             <div class="btns">
-                <button id="registerBtn">S'identifier</button>
+                <button id="loginBtn">S'identifier</button>
                 <button id="registerBtn">S'inscrire</button>
             </div>
         </nav>
@@ -48,10 +36,9 @@
                     <h1>Inscription</h1>
                     
                     <div class="message">
-                        <span class="info-icon">info</span>
+                        <i class="fas fa-exclamation-square info-icon"></i>
                         <div class="text">test test</div>
-                        <div class="close-icon">x</div>
-                       
+                        <div id="close-icon">x</div>
                     </div>
                     <input type="text" name="" id="" class="first-name-value" placeholder="Nom" required>
                     <input type="email" name="" id="" class="last-name-value" placeholder="Prenom" required>
