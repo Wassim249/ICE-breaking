@@ -1,0 +1,180 @@
+:root {
+  --light-blue: #daf6fc;
+  --primary: #0b70dd;
+  --light-primary: #10b3d6;
+  --dark-blue: #3d445b;
+  --secondary: #e92b5f;
+  --light-secondary: #f1a8bd;
+}
+
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  height: 85vh;
+  padding: 10px 10px;
+  flex-wrap: wrap;
+}
+
+.navigation {
+  height: 50vh;
+  padding: 1vh 2vw;
+  position: fixed;
+  width: 20vw;
+  top: 12%;
+  left: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.navigation span {
+  margin-bottom: 20px;
+  color: var(--dark-blue);
+  font-weight: 700;
+}
+
+.navigation .menu-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 1vh 0.5vh 1vh 1.5vh;
+  width: 80%;
+  color: var(--dark-blue);
+}
+
+.navigation .active {
+  background-color: var(--light-blue);
+  border-radius: 10px;
+  color: var(--primary);
+}
+
+.navigation .menu-item h4 {
+  font-weight: 600;
+  font-size: 0.7rem;
+  margin-left: 10px;
+}
+
+#add-discussion,
+#add-subject {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 3vh 1.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+#add-discussion {
+  background-color: var(--primary);
+}
+
+#add-subject {
+  background-color: var(--secondary);
+}
+
+.topic-detail {
+  width: 80vw;
+  margin-left: 25%;
+  padding: 1vh;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 10%;
+}
+
+.poster-profile,
+.response-poster-profile {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.poster-profile img,
+.response-poster-profile img {
+  width: 5%;
+  border-radius: 50%;
+  border: 2px solid var(--secondary);
+  padding: 0.5%;
+  min-width: 20px;
+}
+
+.poster-profile #name,
+.response-poster-profile #name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--dark-blue);
+  margin-left: 10px;
+}
+
+.poster-profile .time,
+.response-poster-profile .time {
+  flex: 1 1 100px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.7rem;
+  color: rgb(177, 177, 177);
+}
+
+.topic-detail p {
+  font-size: 0.8rem;
+  text-align: justify;
+}
+
+.topic-detail hr {
+  width: 100%;
+  border-top: 0.05rem solid rgb(228, 228, 228);
+}
+
+.topic-detail .answers {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.response-poster-profile img {
+  border: 2px solid var(--primary);
+}
+
+.response-poster-profile hr {
+    border-top: 0.05rem solid rgb(240, 240, 240);
+}
+
+.response-poster-profile #name {
+    font-size: .8rem;
+}
+
+.add-response {
+  width: 100%;
+}
+
+.add-response #submit-response-form {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.add-response #submit-response-form textarea {
+  width: 85%;
+  height: 100%;
+  border-radius: 5px;
+  padding: .5vh 1vw;
+  resize: vertical;
+  font-size: .9rem;
+  color: var(--dark-blue);
+  border: 1px solid rgb(224, 224, 224);
+}
+
+.add-response #submit-response-form input[type="submit"] {
+ color: white;
+ background-color: var(--primary);
+ border: none;
+ border-radius: 5px;
+ padding: .5vh 1vw;
+ font-weight: 700;
+ max-height: 50px;
+}

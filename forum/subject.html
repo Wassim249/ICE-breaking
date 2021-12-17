@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/subject.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">ICE BREAKING</div>
+        <div class="search-bar">
+          <input
+            type="search"
+            name=""
+            id=""
+            placeholder="Rechercher un sujet..."
+          />
+        </div>
+        <div class="profile">
+          <i class="far fa-bell"></i>
+          <img src="./assets/images/profile-picture.jpg" alt="profile" />
+          <span>Wassim EL.</span>
+        </div>
+      </nav>
+    </header>
+
+    <section class="home">
+      <div class="navigation">
+        <span>MENU</span>
+        <div class="menu-item active">
+          <i class="fas fa-chart-network"></i>
+          <h4>Nouveau</h4>
+        </div>
+        <div class="menu-item">
+          <i
+            class="fas fa-bullseye-pointer"
+            style="color: var(--secondary)"
+          ></i>
+          <h4>Mes sujets</h4>
+        </div>
+
+        <div class="menu-item">
+          <i class="far fa-comments-alt" style="color: rgb(19, 202, 19)"></i>
+          <h4>Les discussions</h4>
+        </div>
+
+        <div class="menu-item">
+          <i class="far fa-comments-alt" style="color: rgb(19, 202, 19)"></i>
+          <h4>Mes discussions</h4>
+        </div>
+
+        <div class="menu-item" id="add-discussion">
+          + ajouter une discussion
+        </div>
+
+        <div class="menu-item" id="add-subject">+ ajouter un sujet</div>
+      </div>
+      <div class="topic-detail">
+        <div class="topic-info">
+          <h1>Best way to test test test</h1>
+          <div class="poster-profile">
+            <img src="./assets/images/profile-picture.jpg" alt="" />
+            <span id="name">Hunter X Hunter</span>
+            <div class="time">
+              <span>4 days ago</span>
+            </div>
+          </div>
+          <p>test test test test</p>
+          <hr />
+        </div>
+        <div class="add-response">
+          <form action="" id="submit-response-form">
+            <textarea name="" id="" cols="50" rows="2" form="submit-response-form" placeholder="Taper une reponse" required autofocus wrap="soft"></textarea>
+            <input type="submit" value="Ajouter">
+          </form>
+        </div>
+        <div class="answers">
+          <span id="answers-number">12 Reponses</span>
+        </div>
+       
+        <div class="responses">
+          <div class="responses-item">
+            <div class="response-poster-profile">
+              <img src="./assets/images/profile-picture.jpg" alt="" />
+              <span id="name">Hunter X Hunter</span>
+              <div class="time">
+                <span>4 days ago</span>
+              </div>
+            </div>
+            <p>test test test test</p>
+            <hr />
+          </div>
+
+          <div class="responses-item">
+            <div class="response-poster-profile">
+              <img src="./assets/images/profile-picture.jpg" alt="" />
+              <span id="name">Hunter X Hunter</span>
+              <div class="time">
+                <span>4 days ago</span>
+              </div>
+            </div>
+            <p>test test test test</p>
+            <hr />
+          </div>
+
+         
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

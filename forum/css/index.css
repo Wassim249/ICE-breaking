@@ -104,6 +104,13 @@
     letter-spacing: 1px;
     text-align: justify;
     color: var(--dark-blue);
+    transition: .2s ease-in-out;
+}
+
+.topic h1:hover {
+  text-decoration: underline;
+  color: var(--secondary);
+  cursor: pointer;
 }
 
 .topic p {
