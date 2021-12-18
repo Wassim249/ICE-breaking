@@ -1,3 +1,13 @@
+<?php
+  include '../includes/modals/user.php' ;
+
+  session_start();
+  if(isset($_SESSION['currentUser'])) 
+    $currentUser = unserialize($_SESSION['currentUser']) ;
+  else 
+    header('Location: ../login.php') ;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,8 +39,8 @@
         </div>
         <div class="profile">
           <i class="far fa-bell"></i>
-          <img src="./assets/images/profile-picture.jpg" alt="profile" />
-          <span>Wassim EL.</span>
+          <img src="<?php echo "./../images/" . $currentUser->image ; ?>" alt="profile" />
+          <span><?php  echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
         </div>
       </nav>
     </header>

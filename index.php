@@ -1,3 +1,7 @@
+<?php
+session_start() ;
+  unset($_SESSION['currentUser']) ;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceuil</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/index.css?v=<?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,15 +19,19 @@
           <div class="logo">ICE BREAKING</div>
           <div class="links">
             <ul class="link-list">
-              <li class="link-items"><a href="./index.html" id="active">Acceuil</a></li>
-              <li class="link-items"><a href="./index.html">Forum</a></li>
-              <li class="link-items"><a href="./index.html">A propos</a></li>
+              <li class="link-items"><a href="./index.php" id="active">Acceuil</a></li>
+              <li class="link-items"><a href="./forum/index.php">Forum</a></li>
+              <li class="link-items"><a href="./index.php">A propos</a></li>
             </ul>
           </div>
 
           <div class="btns">
-            <button id="loginBtn">S'identifier</button>
-            <button id="registerBtn">S'inscrire</button>
+            <button id="loginBtn" onclick="
+              window.location.href = './login.php'
+            ">S'identifier</button>
+            <button id="registerBtn" onclick="
+             window.location.href = './register.php'
+            ">S'inscrire</button>
           </div>
         </nav>
     </header>

@@ -64,10 +64,11 @@ nav {
 }
 
 .profile img {
-  width: 10%;
+  width: 5vw;
+  height: 5vw;
   border-radius: 50%;
   border: 2px solid var(--primary);
-  min-width: 30px;
+  min-width: 5vw;
 }
 
 .profile i {
