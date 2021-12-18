@@ -7,6 +7,7 @@
     <title>Acceuil</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
@@ -46,5 +47,16 @@
     <footer class="footer">
         <p>Developpé par: <a href="#">Wassim EL BAKKOURI</a></p>
     </footer>
+
+    <script>
+      $(window).on("scroll", function() {
+    if($(window).scrollTop() > 50) {
+        $(".header").addClass("active-header");
+    } else {
+        //remove the background property so it comes transparent again (defined in your css)
+       $(".header").removeClass("active-header");
+    }
+});
+    </script>
 </body>
 </html>

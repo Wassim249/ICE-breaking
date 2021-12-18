@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">ICE BREAKING</div>
+        <div class="search-bar">
+          <input
+            type="search"
+            name=""
+            id=""
+            placeholder="Rechercher un sujet..."
+          />
+        </div>
+        <div class="profile">
+          <i class="far fa-bell"></i>
+        </div>
+      </nav>
+    </header>
+
+    <section class="home">
+      <div class="profile-details">
+        <div class="image-container">
+          <div class="overlay">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+
+        <h4 class="full-name">wassim el bakkouri</h4>
+
+        <div class="email">
+          <i class="fas fa-envelope"></i>
+          <span>wassim@gmail.com</span>
+        </div>
+        <button class="modify">Modifier le profil</button>
+      </div>
+
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form action="">
+            <h1>Modifier votre profile</h1>
+              <input type="text" name="" id="" placeholder="Modifier le nom">
+              <input type="text" name="" id="" placeholder="Modifier le prenom">
+              <input type="email" name="" id="" placeholder="Modifier l'email">
+              <input type="password" name="" id="" placeholder="Modifier le mot passe" required>
+                <input type="submit" class="modify" value="Modifier">
+            </form>
+        </div>
+      
+      </div>
+
+      <div class="discussions-subjects">
+        <div class="discussions">
+          <h1>Votre discussion</h1>
+
+          <div class="discussions-list">
+            <div class="discussion">
+              <h1>Discusson a propos de ...</h1>
+              <hr />
+              <div class="info">
+                <div class="poster">
+                  <img src="././assets/images/profile-picture.jpg" alt="" />
+                  <span>Posté par : </span>
+                  <a href="#" id="poster">Wassim </a>
+                  <span>&nbsp;&nbsp; 12Hr ago</span>
+                </div>
+                <span id="comments"><i class="far fa-comments-alt"></i>50</span>
+              </div>
+            </div>
+
+            <div class="discussion">
+              <h1>Discusson a propos de ...</h1>
+              <hr />
+              <div class="info">
+                <div class="poster">
+                  <img src="././assets/images/profile-picture.jpg" alt="" />
+                  <span>Posté par : </span>
+                  <a href="#" id="poster">Wassim </a>
+                  <span>&nbsp;&nbsp; 12Hr ago</span>
+                </div>
+                <span id="comments"><i class="far fa-comments-alt"></i>50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subjects">
+            <h1>Les sujets Crées par vous</h1>
+            <div class="topics">
+                <div class="topic">
+                  <h1>Title title title</h1>
+                  <p>description description description description description</p>
+        
+                  <hr />
+                  <div class="info">
+                    <div class="poster">
+                      <img src="././assets/images/profile-picture.jpg" alt="" />
+                      <span>Posté par : </span>
+                      <a href="#" id="poster">Wassim </a>
+                      <span> 12Hr ago</span>
+                    </div>
+                    <span id="comments"><i class="far fa-comments-alt"></i>50</span>
+                  </div>
+                </div>
+        
+                <div class="topic">
+                  <h1>Title title title</h1>
+                  <p>description description description description description</p>
+                  <hr />
+                  <div class="info">
+                    <div class="poster">
+                      <img src="././assets/images/profile-picture.jpg" alt="" />
+                      <span>Posté par : </span>
+                      <a href="#" id="poster">Wassim </a>
+                      <span> 12Hr ago</span>
+                    </div>
+                    <span id="comments"><i class="far fa-comments-alt"></i>50</span>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+        // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.querySelector(".modify");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+    </script>
+   
+  </body>
+</html>
