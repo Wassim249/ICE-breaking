@@ -45,14 +45,14 @@
   padding: 1vh 0.5vh 1vh 1.5vh;
   width: 80%;
   color: var(--dark-blue);
+  transition: .6s ease;
 }
-
-
 
 .navigation .active {
   background-color: var(--light-blue);
   border-radius: 10px;
   color: var(--primary);
+  
 }
 
 .navigation .menu-item h4 {
@@ -61,6 +61,13 @@
   margin-left: 10px;
 }
 
+
+.navigation .menu-item:hover {
+  cursor: pointer;
+  background-color: var(--light-blue);
+  border-radius: 10px;
+  
+}
 #add-discussion , #add-subject {
     color: white;
     font-size: .9rem;
@@ -85,7 +92,6 @@
 .topics {
   width: 80vw;
   margin-left: 25%;
- 
   padding: 1vh;
   display: grid;
   grid-template-rows: auto;
@@ -99,15 +105,16 @@
     
 }
 
-.topic h1 {
+.topic h1 > a {
     font-size: 1rem;
     letter-spacing: 1px;
     text-align: justify;
+    text-decoration: none;
     color: var(--dark-blue);
     transition: .2s ease-in-out;
 }
 
-.topic h1:hover {
+.topic h1 a:hover {
   text-decoration: underline;
   color: var(--secondary);
   cursor: pointer;
@@ -140,10 +147,13 @@
 
 
 .topic .info img {
-   width: 3%;
+   width: 3vw;
+   height: 3vw;
    border-radius: 40px;
    border: 1px solid var(--primary);
    margin-right: 5px;
+   min-width: 2vw ;
+   min-height: 2vw;
 }
 
 

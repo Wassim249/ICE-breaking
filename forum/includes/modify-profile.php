@@ -77,7 +77,9 @@
                     try {
                         $req = getConnection()->prepare('UPDATE users SET nom = ? , prenom = ? , email = ? , mdp = ? WHERE id = ?');
                         $req->execute(array($firstName,$lastName ,$email,md5($pwd),$currentUser->id));
+                        $imgPath = $currentUser->image ;
                         $currentUser =  new User($currentUser->id,$firstName,$lastName,$email) ;
+                        $currentUser->set_image($imgPath) ;
                         $_SESSION['currentUser'] = serialize($currentUser) ;
 
                         echo 'modification-success' ;
