@@ -174,7 +174,7 @@ else
       $('.fa-camera').click(e => {
         var input = document.createElement('input');
         input.type = 'file';
-
+  
         let file = null
         input.onchange = e => {
           file = e.target.files[0];

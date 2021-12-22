@@ -90,7 +90,6 @@
         $postcountResult = $postcount->fetch() ;
 
        echo '<div class="topic">
-       ' .  ($_POST['allsubjects'] ===  true ? '1' : '0') .'
        <h1> <a href="../subject.php?id=' . $post['subjectID'] .'"> '. $post['titre'] .'</a></h1>
        <p> ' . $post['description'] .'</p>
 
