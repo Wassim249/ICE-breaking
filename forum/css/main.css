@@ -92,3 +92,27 @@ nav {
   color: var(--secondary);
   font-weight: 500;
 }
+
+.search-result {
+  position: absolute;
+  top : 50px ;
+  left: 0;
+  right: 0;
+  background-color: white;
+ padding: .5vw 2vw;
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.search-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-items a {
+  text-decoration: none;
+  color: var(--dark-blue);
+  font-weight: 600;
+  margin-bottom: 10px;
+}

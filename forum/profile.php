@@ -1,11 +1,40 @@
 <?php
-include '../includes/modals/user.php';
 
+include '../includes/modals/user.php';
+include '../includes/connection.php';
+
+$userImage = '';
 session_start();
 if (isset($_SESSION['currentUser']))
   $currentUser = unserialize($_SESSION['currentUser']);
 else
   header('Location: ../login.php');
+
+
+if (isset($_GET['id'])) {
+  $req = getConnection()->prepare('SELECT * FROM users WHERE id= ?');
+  $req->execute(array($_GET['id']));
+  $user = $req->fetch();
+
+  $userImage = $user['photo'];
+} else {
+  $userImage = $currentUser->image;
+  echo $currentUser->firstName;
+}
+
+function profileImage($img)
+{
+
+  if (isset($_GET['id'])) {
+    if ($img != '')
+      echo "../images/" . $img;
+    else
+      echo "../images/" . 'default-profile-image.png';
+  } else
+    echo "./../images/" . $img;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -39,27 +68,42 @@ else
   <section class="home">
     <div class="profile-details">
 
-      <div class="image-container" style=' background-image: url("<?php echo "./../images/" . $currentUser->image; ?>");'>
-        <div class="overlay">
-          <form action="">
+      <div class="image-container" style="background-image: url('<?php profileImage($userImage) ?>');">
+        <?php
+        if (!isset($_GET['id']))
+          echo ' <div class="overlay">
+         <form action="">
+           <i class="fas fa-camera"></i>
+         </form>
+       </div>';
 
-            <i class="fas fa-camera"></i>
-          </form>
+        ?>
 
-        </div>
       </div>
 
-      <h4 class="full-name"><?php echo $currentUser->firstName . ' ' . $currentUser->lastName; ?></h4>
+      <h4 class="full-name"><?php
+                            if (isset($_GET['id']))
+                              echo $user['nom'] . ' ' . $user['prenom'];
+                            else
+                              echo $currentUser->firstName . ' ' . $currentUser->lastName; ?>
+      </h4>
 
       <div class="email">
         <i class="fas fa-envelope"></i>
-        <span><?php echo $currentUser->email; ?></span>
+        <span><?php
+              if (isset($_GET['id']))
+                echo $user['email'];
+              else
+                echo $currentUser->email; ?></span>
       </div>
-      <button class="modify">Modifier le profil</button>
-      <div class="logout">
-        <i class="fas fa-sign-in-alt"></i>
-        <span>Se déconnecter</span>
-      </div>
+      <?php if (!isset($_GET['id'])) {
+        echo '  <button class="modify">Modifier le profil</button>
+        <div class="logout">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Se déconnecter</span>
+        </div>';
+      }  ?>
+
     </div>
 
     <div id="myModal" class="modal">
@@ -71,7 +115,9 @@ else
           <h1>Modifier votre profile</h1>
           <div class="message"></div>
           <br>
-          <input type="text" name="" id="firstName" placeholder="Modifier le nom" value="<?php echo $currentUser->firstName; ?>">
+          <input type="text" name="" id="firstName" placeholder="Modifier le nom" value="<?php
+
+                                                                                          ?>">
           <input type="text" name="" id="lastName" placeholder="Modifier le prenom" value="<?php echo $currentUser->lastName; ?>">
           <input type="email" name="" id="email" placeholder="Modifier l'email" value="<?php echo $currentUser->email; ?>">
           <input type="password" name="" id="pwd" placeholder="Modifier le mot passe">
@@ -84,72 +130,33 @@ else
 
     <div class="discussions-subjects">
       <div class="discussions">
-        <h1>Votre discussion</h1>
+        <h1>
+          <?php
+          if (isset($_GET['id']))
+            echo 'Les discussions de ' . $user['nom'] . ' ' . $user['prenom'];
+          else
+            echo 'Votre discussion';
+          ?>
+        </h1>
 
         <div class="discussions-list">
-          <div class="discussion">
-            <h1>Discusson a propos de ...</h1>
-            <hr />
-            <div class="info">
-              <div class="poster">
-                <img src="././assets/images/profile-picture.jpg" alt="" />
-                <span>Posté par : </span>
-                <a href="#" id="poster">Wassim </a>
-                <span>&nbsp;&nbsp; 12Hr ago</span>
-              </div>
-              <span id="comments"><i class="far fa-comments-alt"></i>50</span>
-            </div>
-          </div>
 
-          <div class="discussion">
-            <h1>Discusson a propos de ...</h1>
-            <hr />
-            <div class="info">
-              <div class="poster">
-                <img src="././assets/images/profile-picture.jpg" alt="" />
-                <span>Posté par : </span>
-                <a href="#" id="poster">Wassim </a>
-                <span>&nbsp;&nbsp; 12Hr ago</span>
-              </div>
-              <span id="comments"><i class="far fa-comments-alt"></i>50</span>
-            </div>
-          </div>
+
+        
         </div>
       </div>
 
       <div class="subjects">
-        <h1>Les sujets Crées par vous</h1>
+        <h1>
+        <?php
+             if(isset($_GET['id'])) 
+             echo 'Les sujets de ' . $user['nom'] . ' ' .$user['prenom'] ;
+           else
+            echo 'Votre sujets';
+        ?>  
+        
+       </h1>
         <div class="topics">
-          <div class="topic">
-            <h1>Title title title</h1>
-            <p>description description description description description</p>
-
-            <hr />
-            <div class="info">
-              <div class="poster">
-                <img src="././assets/images/profile-picture.jpg" alt="" />
-                <span>Posté par : </span>
-                <a href="#" id="poster">Wassim </a>
-                <span> 12Hr ago</span>
-              </div>
-              <span id="comments"><i class="far fa-comments-alt"></i>50</span>
-            </div>
-          </div>
-
-          <div class="topic">
-            <h1>Title title title</h1>
-            <p>description description description description description</p>
-            <hr />
-            <div class="info">
-              <div class="poster">
-                <img src="././assets/images/profile-picture.jpg" alt="" />
-                <span>Posté par : </span>
-                <a href="#" id="poster">Wassim </a>
-                <span> 12Hr ago</span>
-              </div>
-              <span id="comments"><i class="far fa-comments-alt"></i>50</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -174,7 +181,7 @@ else
       $('.fa-camera').click(e => {
         var input = document.createElement('input');
         input.type = 'file';
-  
+
         let file = null
         input.onchange = e => {
           file = e.target.files[0];
@@ -212,16 +219,40 @@ else
         input.click();
       })
 
-      $('.logout').click(e=> {
-        $.ajax({
-        url: 'includes/logout.php' ,
-        type: 'POST',
-        complete : data => {
-          window.location.href = './../index.php';
+      console.log(<?php echo $_GET['id']; ?>);
+
+      $('.topics').load(
+        'includes/get-subjects-for-user.php', {
+          userId: <?php echo $_GET['id']; ?>
+        },
+        (response) => {
+          if (response == 'no-subjects') {
+            console.trace('add image later')
+          }
         }
+      )
+
+      $('.discussions-list').load(
+        'includes/get-discussion-for-user.php', {
+          userId: <?php echo $_GET['id']; ?>
+        },
+        (response) => {
+          if (response == 'no-subjects') {
+            console.trace('add image later')
+          }
+        }
+      )
+
+      $('.logout').click(e => {
+        $.ajax({
+          url: 'includes/logout.php',
+          type: 'POST',
+          complete: data => {
+            window.location.href = './../index.php';
+          }
+        })
       })
-      })
-      
+
 
       // Get the modal
       var modal = document.getElementById("myModal");

@@ -35,46 +35,43 @@
   font-weight: 700;
 }
 
-.navigation .menu-item {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 1vh 0.5vh 1vh 1.5vh;
-  width: 80%;
-  color: var(--dark-blue);
+.navigation .members {
+  width: 100%;
 }
 
-.navigation .active {
-  background-color: var(--light-blue);
-  border-radius: 10px;
+.navigation .member {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member img {
+  border : 2px solid var(--primary) ;
+  border-radius: 100px;
+  width: 2vw;
+  height: 2vw;
+  max-width: 2vw;
+  max-height: 2vw;
+  margin-right: 20px;
+}
+
+.member a {
+  text-decoration: none;
+  color: var(--dark-blue);
+
+}
+
+.member a:hover {
+  text-decoration: underline;
   color: var(--primary);
 }
 
-.navigation .menu-item h4 {
-  font-weight: 600;
-  font-size: 0.7rem;
-  margin-left: 10px;
+.creator img {
+  border : 2px solid var(--secondary) ;
 }
 
-#add-discussion,
-#add-subject {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 3vh 1.5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
-
-#add-discussion {
-  background-color: var(--primary);
-}
-
-#add-subject {
-  background-color: var(--secondary);
+.creator {
+  margin-bottom: 20px;
 }
 
 .topic-detail {
