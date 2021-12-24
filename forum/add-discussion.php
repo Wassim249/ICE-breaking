@@ -22,62 +22,67 @@ else
 </head>
 
 <body>
-<header>
-    <nav>
-      <div class="logo">ICE BREAKING</div>
-      <div class="search-bar">
-        <input type="search" name="" id="search-input" placeholder="Rechercher un(e) ..." />
-        <select name="" id="cmb-sujet-discussion">
-          <option value="s" default>Sujet</option>
-          <option value="d">Discussion</option>
-        </select>
-      </div>
-      <div class="profile">
-        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
-        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
-      </div>
-    </nav>
+    <header>
+        <nav>
+            <div class="logo">ICE BREAKING</div>
+            <div class="search-bar">
+                <input type="search" name="" id="search-input" placeholder="Rechercher un(e) ..." />
+                <select name="" id="cmb-sujet-discussion">
+                    <option value="s" default>Sujet</option>
+                    <option value="d">Discussion</option>
+                </select>
+            </div>
+            <div class="profile">
+                <img src="<?php
+                            if ($currentUser->image == '')
+                                $img = 'default-profile-image.png';
+                            else
+                                $img = $currentUser->image;
+                            echo "../images/" . $img; ?>" alt="profile" />
+                <span> <a href="./profile.php">&nbsp; <?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></a></span>
+            </div>
+        </nav>
 
-    <div class="search-result">
-      <div class="search-items">
-      </div>
-    </div>
+        <div class="search-result">
+            <div class="search-items">
+            </div>
+        </div>
     </header>
 
     <section class="home">
 
-    <div class="inputs">
-    <h1>Ajouter une discussion :</h1>
+        <div class="inputs">
+            <h1>Ajouter une discussion :</h1>
 
-<form action="" class="form">
-    <div class="message">
+            <form action="" class="form">
+                <div class="message">
 
-    </div>
-    <div class="title">
-        <label for="">Titre du discussion :</label>
-        <input type="text" name="" id="discussionTitle">
-    </div>
-    <div class="members">
-        <label for="">Ajouter des membres</label>
-        <br>
-        <div class="search-members">
-            <input type="text" placeholder="Rechercher des utilisateurs" id="searchMembersInput">
-            <div class="founded-members">
-            </div>
+                </div>
+                <div class="title">
+                    <label for="">Titre du discussion :</label>
+                    <input type="text" name="" id="discussionTitle">
+                </div>
+                <div class="members">
+                    <label for="">Ajouter des membres</label>
+                    <br>
+                    <div class="search-members">
+                        <input type="text" placeholder="Rechercher des utilisateurs" id="searchMembersInput">
+                        <div class="founded-members">
+                        </div>
+                    </div>
+                    <div class="added-members">
+                    </div>
+                    <input type="submit" value="Ajouter">
+                </div>
+
+
+            </form>
         </div>
-        <div class="added-members">
+
+        <div class="img-container">
+            <img src="../images/discussion.jpg" alt="">
         </div>
-        <input type="submit" value="Ajouter">
-    </div>
 
-
-</form>
-    </div>
-
-    <div class="img-container">
-        <img src="../images/discussion.jpg" alt="">
-    </div>
-     
     </section>
 
     <script>
@@ -89,6 +94,10 @@ else
         })
 
         $(document).ready(() => {
+            $(document).on("click", '#close-icon', e => {
+                $('.message').css('display', 'none')
+            })
+
             const fillMembers = (value) => {
                 $('.founded-members').load('includes/get-users.php', {
                     val: value
@@ -124,17 +133,17 @@ else
                     $('.added-members').append(divContainer)
                 }
             })
-
+            $('.logo').click(e=>window.location.href = './index.php')
             $(document).on("click", '.delete-added-member', (e) => {
                 console.log('fdgfd');
                 $(this).closest('added-member').remove()
             })
 
             $('.form').submit((e) => {
+                $('.message').css('display', 'block')
                 e.preventDefault()
                 $('.message').load('includes/add-discussion.php', {
                     title: $('#discussionTitle').val(),
-
                     members: addedMembers
                 }, (res) => {
                     $('#subjectTitle').val("")
@@ -143,20 +152,20 @@ else
                 })
             })
 
-            const fillSearch =(value,type) => {
-    $('.search-items').load('includes/search.php', {
-      val : value ,
-      type : type
-    })
-  }
+            const fillSearch = (value, type) => {
+                $('.search-items').load('includes/search.php', {
+                    val: value,
+                    type: type
+                })
+            }
 
-  $('#search-input').keyup(e=> {
-    if( $('#search-input').val() == '')  $('.search-result').css('display','none')
-    else {
-      $('.search-result').css('display','block')
-      fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
-    }
-  })
+            $('#search-input').keyup(e => {
+                if ($('#search-input').val() == '') $('.search-result').css('display', 'none')
+                else {
+                    $('.search-result').css('display', 'block')
+                    fillSearch($('#search-input').val(), $('#cmb-sujet-discussion').val())
+                }
+            })
 
         })
     </script>

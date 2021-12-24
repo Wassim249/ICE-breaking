@@ -16,7 +16,7 @@ echo "<div class='failed' >
 <div class='text'>Veuillez saisir un titre</div>
 <div id='close-icon'>&times</div>
 </div>";
-}else if ($description == ""){
+}else if (trim( $description) == ""){
     echo "<div class='failed' >
     <i class='fas fa-exclamation-square info-icon'></i>
     <div class='text'>Veuillez saisir une description</div>

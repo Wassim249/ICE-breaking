@@ -30,7 +30,7 @@ else
   </head>
 
   <body>
-    <header>
+  <header>
     <nav>
       <div class="logo">ICE BREAKING</div>
       <div class="search-bar">
@@ -41,9 +41,13 @@ else
         </select>
       </div>
       <div class="profile">
-        <i class="far fa-bell"></i>
-        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
-        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
+        <img src="<?php
+        if($currentUser->image == '')
+          $img = 'default-profile-image.png' ;
+        else 
+          $img =$currentUser->image;
+        echo "../images/" . $img; ?>" alt="profile" />
+        <span> <a href="./profile.php"><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></a></span>
       </div>
     </nav>
 
@@ -118,6 +122,7 @@ else
     <script>
 
       $(document).ready(()=> {
+        $('.logo').click(e=>window.location.href = './index.php')
         $('.search-result').css('display','none')
         $('.members-list').load('includes/get-members.php',{
           type : 'd' ,

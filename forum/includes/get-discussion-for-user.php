@@ -28,7 +28,7 @@
           <div class="poster">
             <img src="../images/'. $image .'" alt="" />
             <span>Posté par : </span>
-            <a href="#" id="poster">'. $discussion['nom'] . ' ' . $discussion['prenom'] .' </a>
+            <a href="./forum/profile.php?id='. $discussion['userId'] .'" id="poster">'. $discussion['nom'] . ' ' . $discussion['prenom'] .' </a>
             <span>&nbsp;&nbsp; '. get_time_difference($discussion['dateCreation']) .'</span>
           </div>
           <span id="comments"><i class="far fa-comments-alt"></i>'. $postcountResult['postcount'] .'</span>

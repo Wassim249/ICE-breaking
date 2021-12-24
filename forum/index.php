@@ -1,11 +1,14 @@
 <?php
 include '../includes/modals/user.php';
 
+
+
 session_start();
 if (isset($_SESSION['currentUser']))
   $currentUser = unserialize($_SESSION['currentUser']);
 else
   header('Location: ../login.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +38,13 @@ else
         </select>
       </div>
       <div class="profile">
-        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
-        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
+        <img src="<?php
+        if($currentUser->image == '')
+          $img = 'default-profile-image.png' ;
+        else 
+          $img =$currentUser->image;
+        echo "../images/" . $img; ?>" alt="profile" />
+        <span> <a href="./profile.php"><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></a></span>
       </div>
     </nav>
 
@@ -75,40 +83,11 @@ else
       <div class="menu-item" id="add-subject">+ ajouter un sujet</div>
     </div>
     <div class="topics">
-      <div class="topic">
-        <h1>Title title title</h1>
-        <p>description description description description description</p>
-
-        <hr />
-        <div class="info">
-          <div class="poster">
-            <img src="././assets/images/profile-picture.jpg" alt="" />
-            <span>Posté par : </span>
-            <a href="#" id="poster">Wassim </a>
-            <span> 12Hr ago</span>
-          </div>
-          <span id="comments"><i class="far fa-comments-alt"></i>50</span>
-        </div>
-      </div>
-
-      <div class="topic">
-        <h1>Title title title</h1>
-        <p>description description description description description</p>
-        <hr />
-        <div class="info">
-          <div class="poster">
-            <img src="././assets/images/profile-picture.jpg" alt="" />
-            <span>Posté par : </span>
-            <a href="#" id="poster">Wassim </a>
-            <span> 12Hr ago</span>
-          </div>
-          <span id="comments"><i class="far fa-comments-alt"></i>50</span>
-        </div>
-      </div>
     </div>
   </section>
   <script>
     $(document).ready(() => {
+      $('.logo').click(e=>window.location.href = './index.php')
       $(window).on("scroll", function() {
         if ($(window).scrollTop() > 50) {
           $("header").addClass("active");
@@ -116,6 +95,9 @@ else
           $("header").removeClass("active");
         }
       });
+
+      $('#add-subject').click(e=> window.location.href ='./add-subject.php') 
+      $('#add-discussion').click(e=> window.location.href ='./add-discussion.php') 
 
       const fillSubjects = (s) => {
         !s ? console.log('clicked ' + s) : console.log('nop');

@@ -32,7 +32,7 @@
           <div class="poster">
             <img src="../images/'. $image .'" alt="" />
             <span>Posté par : </span>
-            <a href="profile.php?id='. $subject['userId'] .'" id="poster">'. $subject['nom'] . ' ' . $subject['prenom'] .'</a>
+            <a href="./forum/profile.php?id='. $subject['userId'] .'" id="poster">'. $subject['nom'] . ' ' . $subject['prenom'] .'</a>
             <span> '. get_time_difference($subject['dateCreation']) .'</span>
           </div>
           <span id="comments"><i class="far fa-comments-alt"></i>'. $postcountResult['postcount'] .'</span>

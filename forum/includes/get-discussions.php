@@ -29,14 +29,14 @@
         $msgCountResult = $msgcount->fetch() ;
 
        echo ' <div class="topic">
-       <h1><a href="discussion.php?id=" '. $post['discussionID'] .'>'  . $post['titre'] .'</a></h1>
+       <h1><a href="./discussion-detail.php?id='. $post['discussionID'] .'" >'  . $post['titre'] .'</a></h1>
 
        <hr>
        <div class="info">
            <div class="poster">
                <img src="' .  ($post['photo'] == "" ? "../images/default-profile-image.png" : "../images/" . $post['photo'])  .'" alt="">
                <span>Posté par : &nbsp;</span>
-               <a href="#" id="poster">'. $post['nom'] . ' ' . $post['prenom'] .' </a>
+               <a href="profile.php?id='. $post['userId'] .'" id="poster">'. $post['nom'] . ' ' . $post['prenom'] .' </a>
                <span>&nbsp;&nbsp; |&nbsp;&nbsp;'  . get_time_difference($post['dateCreation']) .'</span>
            </div>
            <span id="comments"><i class="far fa-comments-alt"></i>'. $msgCountResult['msgCount'] .'</span>

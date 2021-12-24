@@ -47,7 +47,7 @@
             if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($pwd) < 8) {
                 echo "<div class='failed' >
                 <i class='fas fa-exclamation-square info-icon'></i>
-                <div class='text'>pwd should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.</div>
+                <div class='text'>Le mot de passe doit comporter au moins 8 caractères et doit inclure au moins une lettre majuscule, un chiffre et un caractère spécial.</div>
                 <div id='close-icon'>&times</div>
                 </div>" ;
             }
@@ -73,9 +73,11 @@
                 }
                 else {
                     try {
-                        $req = getConnection()->prepare('INSERT INTO users VALUES(NULL,?,?,?,?,NULL)');
+                        $con =getConnection();
+                        $req = $con->prepare('INSERT INTO users VALUES(NULL,?,?,?,?,NULL)');
                         $req->execute(array($firstName,$lastName ,$email,md5($pwd)));
-                        $currentUser =  new User(getConnection()->lastInsertId(),$firstName,$lastName,$email) ;
+                        $currentUser =  new User($con->lastInsertId(),$firstName,$lastName,$email) ;
+                      
                         session_start() ;
                         $_SESSION['currentUser'] = serialize($currentUser) ;
 

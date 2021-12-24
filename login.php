@@ -17,15 +17,15 @@
             <div class="logo">ICE BREAKING</div>
             <div class="links">
                 <ul class="link-list">
-                    <li class="link-items"><a href="./index.html" id="">Acceuil</a></li>
-                    <li class="link-items"><a href="./index.html">Forum</a></li>
-                    <li class="link-items"><a href="./index.html">A propos</a></li>
+                    <li class="link-items"><a href="./index.php" id="">Acceuil</a></li>
+                    <li class="link-items"><a href="./forum/index.php">Forum</a></li>
+                    <li class="link-items"><a href="#">A propos</a></li>
                 </ul>
             </div>
 
             <div class="btns">
-                <button id="loginBtn">S'identifier</button>
-                <button id="registerBtn">S'inscrire</button>
+                <button id="loginBtn" onclick="window.location.href = './login.php'">S'identifier</button>
+                <button id="registerBtn" onclick="window.location.href = './register.php'">S'inscrire</button>
             </div>
         </nav>
     </header>
@@ -40,7 +40,7 @@
                 <input type="email" name="" id="email" class="email-value" placeholder="Adresse email...">
                 <input type="password" name="" id="pwd" class="password-value" placeholder="Mot de passe">
                 <input type="submit" value="S'identifier" class="login-submit">
-                <a href="" class="already-registered">Deja inscrit ?</a>
+                <a href="./register.php" class="already-registered">Deja inscrit ?</a>
             </form>
         </div>
 
@@ -68,6 +68,7 @@
                 })
             })
 
+            $('.logo').click(e=>window.location.href='./index.php')
 
             $(window).on("scroll", function() {
                 if ($(window).scrollTop() > 50) {

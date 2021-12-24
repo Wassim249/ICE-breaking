@@ -86,7 +86,7 @@ nav {
 }
 
 
-.profile span {
+.profile span a {
   margin-left: 20px;
   font-size: .8rem;
   color: var(--secondary);

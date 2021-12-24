@@ -18,19 +18,25 @@ if (isset($_GET['id'])) {
 
   $userImage = $user['photo'];
 } else {
-  $userImage = $currentUser->image;
+  if ($currentUser->image == '')
+    $userImage = 'default-profile-image.png';
+  else
+    $userImage = $currentUser->image;
 }
+
 
 function profileImage($img)
 {
 
   if (isset($_GET['id'])) {
     if ($img != '')
-      echo "../images/" . $img;
+      echo "../images/" . $img ;
     else
       echo "../images/" . 'default-profile-image.png';
   } else
-    echo "./../images/" . $img;
+    echo "../images/" . $img ;
+
+
 }
 
 
@@ -63,8 +69,13 @@ function profileImage($img)
         </select>
       </div>
       <div class="profile">
-        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
-        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
+        <img src="<?php
+        if($currentUser->image == '')
+          $img = 'default-profile-image.png' ;
+        else 
+          $img =$currentUser->image;
+        echo "../images/" . $img; ?>" alt="profile" />
+        <span> <a href="./profile.php"><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></a></span>
       </div>
     </nav>
 
@@ -85,7 +96,6 @@ function profileImage($img)
            <i class="fas fa-camera"></i>
          </form>
        </div>';
-
         ?>
 
       </div>
@@ -147,20 +157,20 @@ function profileImage($img)
         <div class="discussions-list">
 
 
-        
+
         </div>
       </div>
 
       <div class="subjects">
         <h1>
-        <?php
-             if(isset($_GET['id'])) 
-             echo 'Les sujets de ' . $user['nom'] . ' ' .$user['prenom'] ;
-           else
+          <?php
+          if (isset($_GET['id']))
+            echo 'Les sujets de ' . $user['nom'] . ' ' . $user['prenom'];
+          else
             echo 'Votre sujets';
-        ?>  
-        
-       </h1>
+          ?>
+
+        </h1>
         <div class="topics">
         </div>
       </div>
@@ -169,6 +179,7 @@ function profileImage($img)
 
   <script>
     $(document).ready(function() {
+      $('.logo').click(e=>window.location.href = './index.php')
       $('#modify-profile-form').submit(e => {
         e.preventDefault();
         $('.message').css('display', 'block')
@@ -227,7 +238,7 @@ function profileImage($img)
 
       $('.topics').load(
         'includes/get-subjects-for-user.php', {
-          userId: <?php echo isset( $_GET['id']) ? $_GET['id'] : $currentUser->id ?>
+          userId: <?php echo isset($_GET['id']) ? $_GET['id'] : $currentUser->id ?>
         },
         (response) => {
           if (response == 'no-subjects') {
@@ -238,7 +249,7 @@ function profileImage($img)
 
       $('.discussions-list').load(
         'includes/get-discussion-for-user.php', {
-          userId: <?php echo isset( $_GET['id']) ? $_GET['id'] : $currentUser->id ?>
+          userId: <?php echo isset($_GET['id']) ? $_GET['id'] : $currentUser->id ?>
         },
         (response) => {
           if (response == 'no-subjects') {
@@ -257,8 +268,8 @@ function profileImage($img)
         })
       })
       $(document).on("click", '#close-icon', e => {
-                $('.message').css('display', 'none')
-            })
+        $('.message').css('display', 'none')
+      })
 
       var modal = document.getElementById("myModal");
       var btn = document.querySelector(".modify");
@@ -275,20 +286,20 @@ function profileImage($img)
         }
       }
 
-      const fillSearch =(value,type) => {
-    $('.search-items').load('includes/search.php', {
-      val : value ,
-      type : type
-    })
-  }
+      const fillSearch = (value, type) => {
+        $('.search-items').load('includes/search.php', {
+          val: value,
+          type: type
+        })
+      }
 
-  $('#search-input').keyup(e=> {
-    if( $('#search-input').val() == '')  $('.search-result').css('display','none')
-    else {
-      $('.search-result').css('display','block')
-      fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
-    }
-  })
+      $('#search-input').keyup(e => {
+        if ($('#search-input').val() == '') $('.search-result').css('display', 'none')
+        else {
+          $('.search-result').css('display', 'block')
+          fillSearch($('#search-input').val(), $('#cmb-sujet-discussion').val())
+        }
+      })
     });
   </script>
 

@@ -33,9 +33,13 @@ else
         </select>
       </div>
       <div class="profile">
-        <i class="far fa-bell"></i>
-        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
-        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
+        <img src="<?php
+        if($currentUser->image == '')
+          $img = 'default-profile-image.png' ;
+        else 
+          $img =$currentUser->image;
+        echo "../images/" . $img; ?>" alt="profile" />
+        <span> <a href="./profile.php"><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></a></span>
       </div>
     </nav>
 
@@ -94,6 +98,10 @@ else
 
     <script>
         $(document).ready(() => {
+            $(document).on("click", '.delete-added-member', (e) => {
+                $(this).closest('added-member').remove()
+            })
+
             const fillMembers = (value) => {
                 $('.founded-members').load('includes/get-users.php', {
                     val: value
@@ -129,7 +137,7 @@ else
                     $('.added-members').append(divContainer)
                 }
             })
-
+            $('.logo').click(e=>window.location.href = './index.php')
             $(document).on("click", '.delete-added-member', (e) => {
                 console.log('fdgfd');
                 $(this).closest('added-member').remove()
@@ -137,6 +145,7 @@ else
 
             $('.form').submit((e) => {
                 e.preventDefault()
+                $('.message').css('display', 'block')
                 $('.message').load('includes/add-subject.php', {
                     title: $('#subjectTitle').val(),
                     description: $('#subjectDescription').val(),
