@@ -45,7 +45,7 @@
                     <input type="password" name="" id="pwd" class="password-value" placeholder="Le mot de passe" >
                     <input type="password" name="" id="pwd-conf" class="password-confirmation-value" placeholder="confirmation du mot passe">
                     <input type="submit" value="S'inscrire" class="register-submit">
-                    <a href="" class="new-user">Nouveau utilisateur</a>
+                    <a href="" class="new-user">Ancien utilisateur ?</a>
             </form>
         </div>
 
@@ -59,6 +59,7 @@
            $(document).ready(function() {
             $('#register-form').submit((e) => {
                 e.preventDefault()
+                $('.message').css('display', 'block')
                 $('.message').load('includes/register.php', {
                     firstName : $('#firstName').val() ,
                     lastName : $('#lastName').val() ,
@@ -74,9 +75,18 @@
                 })
             })
 
-            $('#close-icon').click((e) => {
-                console.log('close');
-                $(this).parent().remove()
+            $(window).on("scroll", function() {
+                if ($(window).scrollTop() > 50) {
+                    $(".header").addClass("active-header");
+                } else {
+                    $(".header").removeClass("active-header");
+                }
+
+
+            })
+
+            $(document).on("click", '#close-icon', e => {
+                $('.message').css('display', 'none')
             })
         })
     </script>

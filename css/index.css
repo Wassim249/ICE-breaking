@@ -1,20 +1,36 @@
 .first-section {
     height: 50vh;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    
+    align-items:center;
+}
+
+.text {
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
+}
+
+.img-container {
+    width: 50vw;
+}
+
+.img-container img {
+    width: 50vw;
 }
 
 .title1 {
     letter-spacing: .08rem;
-    text-align: center;
+   font-size: 2rem;
+   color: var(--primary);
 }
 
 .title2 {
     font-size: 1.1rem;
     color: var(--dark-blue);
-    text-transform: uppercase;
+    
 }
 
 .search-form {
@@ -36,11 +52,13 @@
 
 #submit-search {
     width: 25%;
-    height: 80%;
+    height: 100%;
+    padding: 2vh 1vw;
     background-color: #0b70dd;
     color: white;
     border: none;
     border-radius: .5rem;
+    font-weight: 700;
 }
 
 #submit-search:hover {

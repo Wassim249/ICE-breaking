@@ -9,6 +9,17 @@
 
 .home {
   padding: 0vh 3vw 5vh 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-container {
+  width: 40vw;
+}
+
+.img-container img {
+  width: 35vw;
 }
 
 .home h1 {
@@ -118,6 +129,11 @@ textarea {
     width: 100%;
     cursor: pointer;
     margin-top : 20px ;
+    transition: .3s ease;
+}
+
+.home input[type="submit"]:hover {
+  background-color: var(--secondary);
 }
 
 .message {

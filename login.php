@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,14 +34,12 @@
         <div class="section1">
 
             <form action="" class="login-form" id="loginForm">
-                <h1>Identifiction</h1>
+                <h1>Identification</h1>
                 <div class="message">
-
                 </div>
                 <input type="email" name="" id="email" class="email-value" placeholder="Adresse email...">
                 <input type="password" name="" id="pwd" class="password-value" placeholder="Mot de passe">
                 <input type="submit" value="S'identifier" class="login-submit">
-                <a href="" class="forgot-password">Mot de passe oublié ?</a>
                 <a href="" class="already-registered">Deja inscrit ?</a>
             </form>
         </div>
@@ -51,27 +48,39 @@
 
 
     <footer class="footer">
-        <p>Developpé par: <a href="#">Wassim EL BAKKOURI</a></p>
+        <p>Developpé par: <a href="https://github.com/Wassim249">Wassim EL BAKKOURI</a></p>
     </footer>
 
     <script>
         $(document).ready(function() {
+
             $('#loginForm').submit((e) => {
                 e.preventDefault()
+                $('.message').css('display', 'block')
                 $('.message').load('includes/login.php', {
                     email: $('#email').val(),
                     pwd: $('#pwd').val()
-                },(response,status) => {
-                  if(response == 'login-success') {
-                      window.location.href = './forum/index.php'
-                  }
+                }, (response, status) => {
+                    if (response == 'login-success') {
+                        window.location.href = './forum/index.php'
+                    }
                     console.log(status);
                 })
             })
 
-            $('#close-icon').click((e) => {
-                console.log('close');
-                $(this).parent().remove()
+
+            $(window).on("scroll", function() {
+                if ($(window).scrollTop() > 50) {
+                    $(".header").addClass("active-header");
+                } else {
+                    $(".header").removeClass("active-header");
+                }
+
+
+            })
+
+            $(document).on("click", '#close-icon', e => {
+                $('.message').css('display', 'none')
             })
         })
     </script>

@@ -49,7 +49,7 @@
         if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($pwd) < 8) {
             echo "<div class='failed' >
             <i class='fas fa-exclamation-square info-icon'></i>
-            <div class='text'>pwd should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.</div>
+            <div class='text'>Le mot de passe doit comporter au moins 8 caractères et doit inclure au moins une lettre majuscule, un chiffre et un caractère spécial.</div>
             <div id='close-icon'>&times</div>
             </div>" ;
         }

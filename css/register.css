@@ -1,117 +1,107 @@
 :root {
-    --light-blue: #daf6fc;
-    --primary: #0b70dd;
-    --light-primary: #10b3d6;
-    --dark-blue: #3d445b;
-    --secondary: #e92b5f;
-    --light-secondary: #F1A8BD;
-  }
+  --light-blue: #daf6fc;
+  --primary: #0b70dd;
+  --light-primary: #10b3d6;
+  --dark-blue: #3d445b;
+  --secondary: #e92b5f;
+  --light-secondary: #f1a8bd;
+}
 
-  .main {
-    margin: 180px 6%;
-    height: 100vh;
-  }
+.main {
+  margin: 180px 6%;
+  height: 100vh;
+}
+
+.main {
+  margin: 10% 6%;
+}
 
 .section1 {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #register-form {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 3vw 1vh;
-    width: 50vw;
-    border-radius: 16px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vh 1vw;
+  width: 50vw;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 #register-form > h1 {
-    color: var(--primary);
-    font-weight: bolder;
-    margin-bottom: 10%;
+  color: var(--primary);
+  font-weight: bolder;
 }
 
 .message {
-    width: 70%;
-    height: 4rem;
-  }
-  
-  .failed,
-  .success {
-      width: 100%;
-      height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
-    font-size: .7rem;
-    border-radius: 5px;
-  }
-  
-  .failed {
-    background-color: var(--secondary);
-  }
-  
-  .success {
-    background-color: rgb(19, 216, 19);
-  }
+  width: 38vw;
+  height: 10vh;
+}
+
+.failed {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 5px;
+  background-color: var(--secondary);
+}
+
 .info-icon {
-    font-size: 1.5rem;
-    color: white;
+  font-size: 1.5rem;
+  color: white;
 }
 
 #close-icon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.email-value , .password-value 
-, .first-name-value, .last-name-value,
+.email-value,
+.password-value,
+.first-name-value,
+.last-name-value,
 .password-confirmation-value {
-    width: 70%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .new-user {
-    font-size: smaller;
-    color: var(--light-primary);
-    text-decoration: none;
-    margin-top: 3%;
-
+  font-size: smaller;
+  color: var(--light-primary);
+  text-decoration: none;
+  margin-top: 3%;
 }
 
 .new-user:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 .register-submit {
-    padding: 5% 3%;
-    width: 70%;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: .5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s ease-in-out;
+  padding: 3%;
+  width: 70%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
 .register-submit:hover {
-  
-    background-color: var(--secondary);  
+  background-color: var(--secondary);
 }
-
-
-
-

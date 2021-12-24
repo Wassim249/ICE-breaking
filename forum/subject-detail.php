@@ -30,22 +30,26 @@ else
   </head>
 
   <body>
-    <header>
+  <header>
     <nav>
       <div class="logo">ICE BREAKING</div>
       <div class="search-bar">
-        <input type="search" name="" id="" placeholder="Rechercher un(e) ..." />
+        <input type="search" name="" id="search-input" placeholder="Rechercher un(e) ..." />
         <select name="" id="cmb-sujet-discussion">
-          <option value="s">Sujet</option>
+          <option value="s" default>Sujet</option>
           <option value="d">Discussion</option>
         </select>
       </div>
       <div class="profile">
-        <i class="far fa-bell"></i>
         <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
         <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
       </div>
     </nav>
+
+    <div class="search-result">
+      <div class="search-items">
+      </div>
+    </div>
     </header>
 
     <section class="home">
@@ -143,6 +147,20 @@ else
           });
         })
       
+        const fillSearch =(value,type) => {
+    $('.search-items').load('includes/search.php', {
+      val : value ,
+      type : type
+    })
+  }
+
+  $('#search-input').keyup(e=> {
+    if( $('#search-input').val() == '')  $('.search-result').css('display','none')
+    else {
+      $('.search-result').css('display','block')
+      fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
+    }
+  })
       })
     </script>
   </body>

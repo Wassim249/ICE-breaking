@@ -95,14 +95,13 @@
   padding: 1vh;
   display: grid;
   grid-template-rows: auto;
-  grid-row-gap: 10%;
+  grid-row-gap: 3vh;
 }
 
 .topic {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     padding: 1vh 2vw;
     border-radius: 10px;
-    
 }
 
 .topic h1 > a {

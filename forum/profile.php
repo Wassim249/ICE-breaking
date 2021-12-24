@@ -19,7 +19,6 @@ if (isset($_GET['id'])) {
   $userImage = $user['photo'];
 } else {
   $userImage = $currentUser->image;
-  echo $currentUser->firstName;
 }
 
 function profileImage($img)
@@ -53,17 +52,27 @@ function profileImage($img)
 </head>
 
 <body>
-  <header>
+<header>
     <nav>
       <div class="logo">ICE BREAKING</div>
       <div class="search-bar">
-        <input type="search" name="" id="" placeholder="Rechercher un sujet..." />
+        <input type="search" name="" id="search-input" placeholder="Rechercher un(e) ..." />
+        <select name="" id="cmb-sujet-discussion">
+          <option value="s" default>Sujet</option>
+          <option value="d">Discussion</option>
+        </select>
       </div>
       <div class="profile">
-        <i class="far fa-bell"></i>
+        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
+        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
       </div>
     </nav>
-  </header>
+
+    <div class="search-result">
+      <div class="search-items">
+      </div>
+    </div>
+    </header>
 
   <section class="home">
     <div class="profile-details">
@@ -80,14 +89,12 @@ function profileImage($img)
         ?>
 
       </div>
-
       <h4 class="full-name"><?php
                             if (isset($_GET['id']))
                               echo $user['nom'] . ' ' . $user['prenom'];
                             else
                               echo $currentUser->firstName . ' ' . $currentUser->lastName; ?>
       </h4>
-
       <div class="email">
         <i class="fas fa-envelope"></i>
         <span><?php
@@ -97,7 +104,7 @@ function profileImage($img)
                 echo $currentUser->email; ?></span>
       </div>
       <?php if (!isset($_GET['id'])) {
-        echo '  <button class="modify">Modifier le profil</button>
+        echo '  <button class="modify">Modifier le profile</button>
         <div class="logout">
           <i class="fas fa-sign-in-alt"></i>
           <span>Se déconnecter</span>
@@ -115,9 +122,7 @@ function profileImage($img)
           <h1>Modifier votre profile</h1>
           <div class="message"></div>
           <br>
-          <input type="text" name="" id="firstName" placeholder="Modifier le nom" value="<?php
-
-                                                                                          ?>">
+          <input type="text" name="" id="firstName" placeholder="Modifier le nom" value="<?php echo $currentUser->firstName; ?>">
           <input type="text" name="" id="lastName" placeholder="Modifier le prenom" value="<?php echo $currentUser->lastName; ?>">
           <input type="email" name="" id="email" placeholder="Modifier l'email" value="<?php echo $currentUser->email; ?>">
           <input type="password" name="" id="pwd" placeholder="Modifier le mot passe">
@@ -166,6 +171,7 @@ function profileImage($img)
     $(document).ready(function() {
       $('#modify-profile-form').submit(e => {
         e.preventDefault();
+        $('.message').css('display', 'block')
         $('.message').load('includes/modify-profile.php', {
             firstName: $('#firstName').val(),
             lastName: $('#lastName').val(),
@@ -219,11 +225,9 @@ function profileImage($img)
         input.click();
       })
 
-      console.log(<?php echo $_GET['id']; ?>);
-
       $('.topics').load(
         'includes/get-subjects-for-user.php', {
-          userId: <?php echo $_GET['id']; ?>
+          userId: <?php echo isset( $_GET['id']) ? $_GET['id'] : $currentUser->id ?>
         },
         (response) => {
           if (response == 'no-subjects') {
@@ -234,7 +238,7 @@ function profileImage($img)
 
       $('.discussions-list').load(
         'includes/get-discussion-for-user.php', {
-          userId: <?php echo $_GET['id']; ?>
+          userId: <?php echo isset( $_GET['id']) ? $_GET['id'] : $currentUser->id ?>
         },
         (response) => {
           if (response == 'no-subjects') {
@@ -252,33 +256,39 @@ function profileImage($img)
           }
         })
       })
+      $(document).on("click", '#close-icon', e => {
+                $('.message').css('display', 'none')
+            })
 
-
-      // Get the modal
       var modal = document.getElementById("myModal");
-
-      // Get the button that opens the modal
       var btn = document.querySelector(".modify");
-
-      // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-
-      // When the user clicks on the button, open the modal
       btn.onclick = function() {
         modal.style.display = "block";
       }
-
-      // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
         modal.style.display = "none";
       }
-
-      // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
         }
       }
+
+      const fillSearch =(value,type) => {
+    $('.search-items').load('includes/search.php', {
+      val : value ,
+      type : type
+    })
+  }
+
+  $('#search-input').keyup(e=> {
+    if( $('#search-input').val() == '')  $('.search-result').css('display','none')
+    else {
+      $('.search-result').css('display','block')
+      fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
+    }
+  })
     });
   </script>
 

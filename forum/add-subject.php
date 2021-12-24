@@ -22,62 +22,74 @@ else
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                ICE BREAKING
-            </div>
-            <div class="search-bar">
-                <input type="search" name="" id="" placeholder="Rechercher un sujet...">
-            </div>
-            <div class="profile">
-                <i class="far fa-bell"></i>
-                <img src="<?php echo '../images/' . $currentUser->image   ?>" alt="profile">
-                <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName; ?></span>
-            </div>
-        </nav>
+<header>
+    <nav>
+      <div class="logo">ICE BREAKING</div>
+      <div class="search-bar">
+        <input type="search" name="" id="search-input" placeholder="Rechercher un(e) ..." />
+        <select name="" id="cmb-sujet-discussion">
+          <option value="s" default>Sujet</option>
+          <option value="d">Discussion</option>
+        </select>
+      </div>
+      <div class="profile">
+        <i class="far fa-bell"></i>
+        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
+        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
+      </div>
+    </nav>
+
+    <div class="search-result">
+      <div class="search-items">
+      </div>
+    </div>
     </header>
 
     <section class="home">
-        <h1>Ajouter un sujet :</h1>
+        <div class="inputs">
+            <h1>Ajouter un sujet :</h1>
 
-        <form action="" class="form">
-        <div class="message">
+            <form action="" class="form">
+                <div class="message">
+                </div>
+                <div class="title">
+                    <label for="">Titre du sujet :</label>
+                    <input type="text" name="" id="subjectTitle">
+                </div>
 
-</div>
-            <div class="title">
-                <label for="">Titre du sujet :</label>
-                <input type="text" name="" id="subjectTitle">
-            </div>
+                <div class="description">
+                    <label for="">Description du sujet :</label>
 
-            <div class="description">
-                <label for="">Description du sujet :</label>
+                    <textarea name="" id="subjectDescription" cols="50" rows="5">
 
-                <textarea name="" id="subjectDescription" cols="50" rows="5">
+        </textarea>
+                </div>
 
-                </textarea>
-            </div>
+                <div class="members">
+                    <label for="">Ajouter des membres</label>
+                    <br>
 
-            <div class="members">
-                <label for="">Ajouter des membres</label>
-                <br>
+                    <div class="search-members">
+                        <input type="text" placeholder="Rechercher des utilisateurs" id="searchMembersInput">
+                        <div class="founded-members">
 
-                <div class="search-members">
-                    <input type="text" placeholder="Rechercher des utilisateurs" id="searchMembersInput">
-                    <div class="founded-members">
+                        </div>
+                    </div>
+
+                    <div class="added-members">
 
                     </div>
+
+                    <input type="submit" value="Ajouter">
                 </div>
 
-                <div class="added-members">
-                   
-                </div>
 
-                <input type="submit" value="Ajouter">
-            </div>
+            </form>
+        </div>
+        <div class="img-container">
+            <img src="../images/discussion.jpg" alt="">
+        </div>
 
-
-        </form>
     </section>
 
     <script>
@@ -98,44 +110,59 @@ else
             $(document).on("click", '.userSearched', (e) => {
                 console.log(e.target.id)
 
-                if( addedMembers.find((val)=>val== e.target.id) == undefined) {
-                    var divContainer = document.createElement('div') 
-                divContainer.className = 'added-member'
-                divContainer.id = 'added-' + e.target.id
+                if (addedMembers.find((val) => val == e.target.id) == undefined) {
+                    var divContainer = document.createElement('div')
+                    divContainer.className = 'added-member'
+                    divContainer.id = 'added-' + e.target.id
 
-                var span1 = document.createElement('span')
-                span1.textContent = e.target.textContent
+                    var span1 = document.createElement('span')
+                    span1.textContent = e.target.textContent
 
-                var span2 = document.createElement('span')
-                span2.innerHTML = "*"
-                span2.className="delete-added-member"
+                    var span2 = document.createElement('span')
+                    span2.innerHTML = "*"
+                    span2.className = "delete-added-member"
 
-                divContainer.appendChild(span1)
-                divContainer.appendChild(span2)
-                addedMembers.push(e.target.id)
+                    divContainer.appendChild(span1)
+                    divContainer.appendChild(span2)
+                    addedMembers.push(e.target.id)
 
-                $('.added-members').append(divContainer) 
+                    $('.added-members').append(divContainer)
                 }
             })
 
             $(document).on("click", '.delete-added-member', (e) => {
                 console.log('fdgfd');
-               $(this).closest('added-member').remove()
+                $(this).closest('added-member').remove()
             })
 
-            $('.form').submit((e)=> {
+            $('.form').submit((e) => {
                 e.preventDefault()
-              $('.message').load('includes/add-subject.php',{
-                    title : $('#subjectTitle').val() ,
-                    description : $('#subjectDescription').val(),
-                    members : addedMembers
-                },(res) => {
+                $('.message').load('includes/add-subject.php', {
+                    title: $('#subjectTitle').val(),
+                    description: $('#subjectDescription').val(),
+                    members: addedMembers
+                }, (res) => {
                     $('#subjectTitle').val("")
                     $('#subjectDescription').val("")
                     $('#searchMembersInput').val("")
                     $('founded-members').style.display = 'none'
                 })
             })
+
+            const fillSearch =(value,type) => {
+    $('.search-items').load('includes/search.php', {
+      val : value ,
+      type : type
+    })
+  }
+
+  $('#search-input').keyup(e=> {
+    if( $('#search-input').val() == '')  $('.search-result').css('display','none')
+    else {
+      $('.search-result').css('display','block')
+      fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
+    }
+  })
 
         })
     </script>

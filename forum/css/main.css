@@ -94,10 +94,12 @@ nav {
 }
 
 .search-result {
+  display: none;
   position: absolute;
-  top : 50px ;
-  left: 0;
-  right: 0;
+  top : 13vh ;
+  left: 35vw;
+  right: 35vw;
+
   background-color: white;
  padding: .5vw 2vw;
  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
@@ -115,4 +117,12 @@ nav {
   color: var(--dark-blue);
   font-weight: 600;
   margin-bottom: 10px;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1vh 0;
+}
+
+.search-items a:hover {
+ background-color: var(--light-secondary);
 }

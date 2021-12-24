@@ -22,55 +22,62 @@ else
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                ICE BREAKING
-            </div>
-            <div class="search-bar">
-                <input type="search" name="" id="" placeholder="Rechercher un sujet...">
-            </div>
-            <div class="profile">
-                <i class="far fa-bell"></i>
-                <img src="<?php echo '../images/' . $currentUser->image   ?>" alt="profile">
-                <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName; ?></span>
-            </div>
-        </nav>
+<header>
+    <nav>
+      <div class="logo">ICE BREAKING</div>
+      <div class="search-bar">
+        <input type="search" name="" id="search-input" placeholder="Rechercher un(e) ..." />
+        <select name="" id="cmb-sujet-discussion">
+          <option value="s" default>Sujet</option>
+          <option value="d">Discussion</option>
+        </select>
+      </div>
+      <div class="profile">
+        <img src="<?php echo "./../images/" . $currentUser->image; ?>" alt="profile" />
+        <span><?php echo $currentUser->firstName . ' ' . $currentUser->lastName;  ?></span>
+      </div>
+    </nav>
+
+    <div class="search-result">
+      <div class="search-items">
+      </div>
+    </div>
     </header>
 
     <section class="home">
-        <h1>Ajouter une discussion :</h1>
 
-        <form action="" class="form">
-            <div class="message">
+    <div class="inputs">
+    <h1>Ajouter une discussion :</h1>
 
+<form action="" class="form">
+    <div class="message">
+
+    </div>
+    <div class="title">
+        <label for="">Titre du discussion :</label>
+        <input type="text" name="" id="discussionTitle">
+    </div>
+    <div class="members">
+        <label for="">Ajouter des membres</label>
+        <br>
+        <div class="search-members">
+            <input type="text" placeholder="Rechercher des utilisateurs" id="searchMembersInput">
+            <div class="founded-members">
             </div>
-            <div class="title">
-                <label for="">Titre du discussion :</label>
-                <input type="text" name="" id="discussionTitle">
-            </div>
+        </div>
+        <div class="added-members">
+        </div>
+        <input type="submit" value="Ajouter">
+    </div>
 
 
-            <div class="members">
-                <label for="">Ajouter des membres</label>
-                <br>
+</form>
+    </div>
 
-                <div class="search-members">
-                    <input type="text" placeholder="Rechercher des utilisateurs" id="searchMembersInput">
-                    <div class="founded-members">
-
-                    </div>
-                </div>
-
-                <div class="added-members">
-
-                </div>
-
-                <input type="submit" value="Ajouter">
-            </div>
-
-
-        </form>
+    <div class="img-container">
+        <img src="../images/discussion.jpg" alt="">
+    </div>
+     
     </section>
 
     <script>
@@ -135,6 +142,21 @@ else
                     $('founded-members').style.display = 'none'
                 })
             })
+
+            const fillSearch =(value,type) => {
+    $('.search-items').load('includes/search.php', {
+      val : value ,
+      type : type
+    })
+  }
+
+  $('#search-input').keyup(e=> {
+    if( $('#search-input').val() == '')  $('.search-result').css('display','none')
+    else {
+      $('.search-result').css('display','block')
+      fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
+    }
+  })
 
         })
     </script>
