@@ -11,6 +11,8 @@ else
 if (!isset($_GET['id']))
   header('Location: ../login.php');
 
+if (!isMemberSujet($currentUser->id, $_GET['id']))
+  header('Location: ./index.php');
 
 ?>
 <html lang="en">
@@ -19,10 +21,12 @@ if (!isset($_GET['id']))
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>ICE BREAKING | Sujet</title>
   <link rel="stylesheet" href="./css/main.css?v=<?php echo time(); ?>" />
   <link rel="stylesheet" href="./css/subject.css?v=<?php echo time(); ?>" />
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <script src="//code.tidio.co/lf2zoxxvg8n9kzfqykb21xczwpmijivb.js" async></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 </head>
@@ -93,13 +97,10 @@ if (!isset($_GET['id']))
                                   echo $s['postCount'] . ' reponses';
                                   ?></span>
       </div>
-
       <div class="responses">
         <?php
-        $req = getConnection()->prepare('SELECT u.id , u.nom , u.prenom , u.photo ,p.dateCreation ,p.description FROM poste p, sujet s ,users u WHERE s.id = ? AND s.idCreator = u.id AND p.idSujet = s.id AND p.idCreator = u.id;');
+        $req = getConnection()->prepare('SELECT u.id , u.nom , u.prenom , u.photo ,p.dateCreation ,p.description FROM poste p, sujet s ,users u WHERE s.id = ?  AND p.idSujet = s.id AND p.idCreator = u.id;');
         $req->execute(array($_GET['id']));
-
-
         while ($poste = $req->fetch()) {
           $image = 'default-profile-image.png';
           if ($poste['photo'] != null) $image = $poste['photo'];
@@ -145,7 +146,7 @@ if (!isset($_GET['id']))
             id: <?php echo  $_GET['id']; ?>
           },
           success: function() {
-
+            window.location.reload()
           }
         });
       })

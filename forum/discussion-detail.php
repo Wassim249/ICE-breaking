@@ -2,6 +2,8 @@
 include '../includes/modals/user.php';
 include '../includes/connection.php';
 
+
+//recuperation du utilisateur en cours
 session_start();
 if (isset($_SESSION['currentUser']))
   $currentUser = unserialize($_SESSION['currentUser']);
@@ -11,24 +13,27 @@ else
   if (!isset($_GET['id']))
   header('Location: ../login.php');
 
-
+ if(!isMemberDiscussion($currentUser->id,$_GET['id']) ) 
+ header('Location: ./index.php');
+ 
 ?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ICE BREAKING | Discussion</title>
     <link rel="stylesheet" href="./css/main.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="./css/subject.css?v=<?php echo time(); ?>" />
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="//code.tidio.co/lf2zoxxvg8n9kzfqykb21xczwpmijivb.js" async></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
   </head>
-
   <body>
   <header>
     <nav>
@@ -71,9 +76,7 @@ else
               echo $s['titre'] ;
           ?></h1>
           <div class="poster-profile">
-           
-          </div>
-        
+          </div>    
           <hr />
         </div>
         <div class="add-response">
@@ -90,7 +93,6 @@ else
               echo $s['postCount'] . ' reponses';
           ?></span>
         </div>
-       
         <div class="responses">
           <?php
               $req = getConnection()->prepare('SELECT u.id , u.nom , u.prenom , u.photo ,m.dateCreation ,m.description FROM message m, discussion d ,users u WHERE d.id = ? AND m.idDiscussion = d.id AND m.idCreator = u.id;');
@@ -114,13 +116,11 @@ else
               </div>' ;
               }
           ?>
-         
         </div>
       </div>
     </section>
 
     <script>
-
       $(document).ready(()=> {
         $('.logo').click(e=>window.location.href = './index.php')
         $('.search-result').css('display','none')
@@ -138,17 +138,16 @@ else
           e.preventDefault()
           $.ajax({
             type: 'post',
-            url: 'includes/add-post.php',
+            url: 'includes/add-message.php',
             data: {
               desc : $('#submitted-description').val(),
               id : <?php echo  $_GET['id'] ; ?>
             },
             success: function () {
-            
+              window.location.reload()
             }
           });
         })
-
         const fillSearch =(value,type) => {
     $('.search-items').load('includes/search.php', {
       val : value ,
@@ -163,7 +162,6 @@ else
       fillSearch($('#search-input').val(),$('#cmb-sujet-discussion').val())
     }
   })
-      
       })
     </script>
   </body>

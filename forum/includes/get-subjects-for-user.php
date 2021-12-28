@@ -4,9 +4,6 @@
     session_start() ;
     $currentUser = unserialize($_SESSION['currentUser']);
 
-
-  
-
     if(!isset($_POST['userId'])) $userId = $currentUser->id ;
     else $userId = $_POST['userId'] ;
 
@@ -19,11 +16,9 @@
         $postcount->execute(array($subject['subjectID'])) ;
         $postcountResult = $postcount->fetch() ;
 
-
        if(isset($subject['photo'])) $image =$subject['photo'] ;
         else  $image =  'default-profile-image.png' ;
 
- 
         echo ' <div class="topic">
         <h1>'. $subject['titre'] .'</h1>
         <p>'. $subject['description'] .'</p>

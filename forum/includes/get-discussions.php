@@ -30,7 +30,6 @@
 
        echo ' <div class="topic">
        <h1><a href="./discussion-detail.php?id='. $post['discussionID'] .'" >'  . $post['titre'] .'</a></h1>
-
        <hr>
        <div class="info">
            <div class="poster">

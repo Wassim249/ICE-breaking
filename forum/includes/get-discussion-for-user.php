@@ -20,7 +20,6 @@
        if(isset($discussion['photo'])) $image =$discussion['photo'] ;
         else  $image =  'default-profile-image.png' ;
 
- 
         echo '  <div class="discussion">
         <h1>'. $discussion['titre'] .'</h1>
         <hr />

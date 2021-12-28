@@ -8,6 +8,7 @@
         $pwd = $_POST['pwd'] ;
         $pwdConf = $_POST['pwdConf'] ;
 
+        // si le nom est vide
         if(empty($firstName)) {
             echo "<div class='failed' >
             <i class='fas fa-exclamation-square info-icon'></i>
@@ -15,6 +16,7 @@
             <div id='close-icon'>&times</div>
             </div>" ;
         }
+        // si le prenom est vide
         else if (empty($lastName)) {
             echo "<div class='failed' >
             <i class='fas fa-exclamation-square info-icon'></i>
@@ -22,7 +24,7 @@
             <div id='close-icon'>&times</div>
             </div>" ;
         }
-
+        // si l'email est vide ou ne respecte pas les normes
         else if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<div class='failed' >
             <i class='fas fa-exclamation-square info-icon'></i>
@@ -30,7 +32,7 @@
             <div id='close-icon'>&times</div>
             </div>" ;
         }
-
+        // si le mot de passe est vide 
         elseif (empty($pwd)) {
             echo "<div class='failed' >
             <i class='fas fa-exclamation-square info-icon'></i>
@@ -44,6 +46,7 @@
             $number    = preg_match('@[0-9]@', $pwd);
             $specialChars = preg_match('@[^\w]@', $pwd);
     
+            // test si le mot de passe respecte les normes
             if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($pwd) < 8) {
                 echo "<div class='failed' >
                 <i class='fas fa-exclamation-square info-icon'></i>
@@ -52,6 +55,7 @@
                 </div>" ;
             }
 
+            // si le mot de passe et sa confirmation ne se correspondent pas
             else if ($pwd != $pwdConf) {
                 echo "<div class='failed' >
                 <i class='fas fa-exclamation-square info-icon'></i>
@@ -61,6 +65,7 @@
             }
 
             else {
+                // test si l'email est unique
                 $req = getConnection()->prepare('SELECT * FROM users WHERE email = ?');
                 $req->execute(array($email));
 
@@ -73,9 +78,11 @@
                 }
                 else {
                     try {
+                        // insertion d'un nouveau utilisateur
                         $con =getConnection();
                         $req = $con->prepare('INSERT INTO users VALUES(NULL,?,?,?,?,NULL)');
                         $req->execute(array($firstName,$lastName ,$email,md5($pwd)));
+                        // creation d'un Object user 
                         $currentUser =  new User($con->lastInsertId(),$firstName,$lastName,$email) ;
                       
                         session_start() ;

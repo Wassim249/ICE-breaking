@@ -1,3 +1,4 @@
+<!-- Page d'inscription -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,10 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ICE-BREAKING | Inscription</title>
     <link rel="stylesheet" href="./css/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/register.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <script src="//code.tidio.co/lf2zoxxvg8n9kzfqykb21xczwpmijivb.js" async></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <script src="./js/main.js"></script>
@@ -54,7 +56,7 @@
     </section>
 
     <footer class="footer">
-        <p>Developpé par: <a href="#">Wassim EL BAKKOURI</a></p>
+        <p>Developpé par: <a href="https://github.com/Wassim249">Wassim EL BAKKOURI</a></p>
     </footer>
 
     <script>
@@ -62,6 +64,7 @@
             $('#register-form').submit((e) => {
                 e.preventDefault()
                 $('.message').css('display', 'block')
+                // appel a le script d'inscription
                 $('.message').load('includes/register.php', {
                     firstName: $('#firstName').val(),
                     lastName: $('#lastName').val(),
@@ -69,23 +72,18 @@
                     pwd: $('#pwd').val(),
                     pwdConf: $('#pwd-conf').val()
                 }, (response) => {
-                    console.log(response);
-                    if (response == 'register-success') {
+                    if (response == 'register-success') 
                         window.location.href = './forum/index.php'
-                    }
-
                 })
             })
+            // click sur le logo
             $('.logo').click(e => window.location.href = './index.php')
 
             $(window).on("scroll", function() {
-                if ($(window).scrollTop() > 50) {
+                if ($(window).scrollTop() > 50) 
                     $(".header").addClass("active-header");
-                } else {
+                 else 
                     $(".header").removeClass("active-header");
-                }
-
-
             })
 
             $(document).on("click", '#close-icon', e => {

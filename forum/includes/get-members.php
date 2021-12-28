@@ -18,12 +18,10 @@ if($type == 'd') {
         <img src="../images/' . $img.  '" alt="">
         <a href="profile.php?id=' . $discussion['id'] .'">'. $discussion['nom'] . ' ' . $discussion['prenom'] .'</a>
       </div>' ;
-    
     }
 
   
 }  else if ($type == 's') {
-
     $req = getConnection()->prepare('SELECT u.id , u.nom , u.prenom , u.photo FROM users u ,usersujet us WHERE us.idSujet= ? AND u.id = us.idUser ');
     $req->execute(array($id));
     while($subject = $req->fetch()) {

@@ -27,7 +27,6 @@ if (isset($_GET['id'])) {
 
 function profileImage($img)
 {
-
   if (isset($_GET['id'])) {
     if ($img != '')
       echo "../images/" . $img ;
@@ -35,26 +34,23 @@ function profileImage($img)
       echo "../images/" . 'default-profile-image.png';
   } else
     echo "../images/" . $img ;
-
-
 }
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./css/main.css?v=<?php echo time(); ?>" />
   <link rel="stylesheet" href="./css/profile.css?v=<?php echo time(); ?>" />
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <script src="//code.tidio.co/lf2zoxxvg8n9kzfqykb21xczwpmijivb.js" async></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-  <title>Document</title>
+  <title>ICE BREAKING | Profile</title>
 </head>
 
 <body>
@@ -124,8 +120,6 @@ function profileImage($img)
     </div>
 
     <div id="myModal" class="modal">
-
-      <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
         <form action="" id="modify-profile-form">
@@ -153,14 +147,9 @@ function profileImage($img)
             echo 'Votre discussion';
           ?>
         </h1>
-
         <div class="discussions-list">
-
-
-
         </div>
       </div>
-
       <div class="subjects">
         <h1>
           <?php
@@ -169,7 +158,6 @@ function profileImage($img)
           else
             echo 'Votre sujets';
           ?>
-
         </h1>
         <div class="topics">
         </div>
@@ -242,7 +230,7 @@ function profileImage($img)
         },
         (response) => {
           if (response == 'no-subjects') {
-            console.trace('add image later')
+         
           }
         }
       )
@@ -253,7 +241,7 @@ function profileImage($img)
         },
         (response) => {
           if (response == 'no-subjects') {
-            console.trace('add image later')
+         
           }
         }
       )

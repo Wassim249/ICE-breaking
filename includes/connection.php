@@ -1,36 +1,66 @@
 <?php
+//focntion retourne un objet de connexion PDO 
     function getConnection() {
         try {
             $bdd = new PDO('mysql:host=localhost;dbname=ice-breaking;charset=utf8',
             'root', '');
-
             return $bdd ;
         } catch (Exception $e) {
            return null ;
         }
     }
+// fonction retourne true si l'utilisateur donné en parametre est un membre dans la discussion donnée en parametre
+    function isMemberDiscussion($idUser,$idDiscussion) {
+        $req = getConnection()->prepare("SELECT COUNT(*) as 'rowsCount' FROM userdiscussion WHERE idUser = ? AND idDiscussion= ?");
+        $req->execute(array($idUser,$idDiscussion)) ;
+        $row = $req->fetch() ;
+        $userDiscussion = $row['rowsCount'];
+    
+        $req = getConnection()->prepare("SELECT COUNT(*) as 'rowsCount' FROM discussion WHERE idCreator = ? AND id= ?");
+        $req->execute(array($idUser,$idDiscussion)) ;
+        $row = $req->fetch() ;
+        $discussion = $row['rowsCount'] ;
 
-    function get_time_difference($created_time)
-    {
+        if($discussion > 0 || $userDiscussion > 0) return true ;
+        else return false;
+    }
+// fonction retourne true si l'utilisateur donné en parametre est un membre dans le sujet donnée en parametre
+    function isMemberSujet($idUser,$idSujet) {
+        $req = getConnection()->prepare("SELECT COUNT(*) as 'rowsCount' FROM usersujet WHERE idUser = ? AND idsujet= ?");
+        $req->execute(array($idUser,$idSujet)) ;
+        $row = $req->fetch() ;
+        $userSujet = $row['rowsCount'] ;
+
+        $req = getConnection()->prepare("SELECT COUNT(*) as 'rowsCount' FROM sujet WHERE idCreator = ? AND id= ?");
+        $req->execute(array($idUser,$idSujet)) ;
+        $row = $req->fetch() ;
+        $sujet = $row['rowsCount'] ;
+
+        if($sujet > 0 || $userSujet > 0) return true ;
+        else return false;    
+    }
+
+    //fonction qui calcule le décalage horaire entre la date courante et une date donné en parametre
+    function get_time_difference($created_time) {
            $str = strtotime($created_time);
            $today = strtotime(date('Y-m-d H:i:s'));
    
-           // It returns the time difference in Seconds...
+          // Il renvoie la différence de temps en secondes...
            $time_differnce = $today-$str;
    
-           // To Calculate the time difference in Years...
+           // Pour calculer le décalage horaire en années...
            $years = 60*60*24*365;
    
-           // To Calculate the time difference in Months...
+           // Pour calculer le décalage horaire en mois...
            $months = 60*60*24*30;
    
-           // To Calculate the time difference in Days...
+          // Pour calculer le décalage horaire en jours...
            $days = 60*60*24;
    
-           // To Calculate the time difference in Hours...
+        // Pour calculer le décalage horaire en Heures...
            $hours = 60*60;
    
-           // To Calculate the time difference in Minutes...
+        // Pour calculer le décalage horaire en Minutes...
            $minutes = 60;
    
            if(intval($time_differnce/$years) > 1)
@@ -71,4 +101,3 @@
                return "il y a quelques secondes";
            }
      }
-?>

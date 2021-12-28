@@ -42,7 +42,4 @@ $con = getConnection();
     <div id='close-icon'>&times</div>
     </div>";
 }
-
-
-
 ?>

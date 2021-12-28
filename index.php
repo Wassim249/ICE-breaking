@@ -1,3 +1,4 @@
+<!-- Page d'accuiell -->
 <?php
 session_start();
 unset($_SESSION['currentUser']);
@@ -9,9 +10,11 @@ unset($_SESSION['currentUser']);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acceuil</title>
+  <title>ICE BREAKING | Acceuil</title>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="css/index.css?v=<?php echo time(); ?>">
+  <script src="//code.tidio.co/lf2zoxxvg8n9kzfqykb21xczwpmijivb.js" async></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
@@ -26,7 +29,6 @@ unset($_SESSION['currentUser']);
           <li class="link-items"><a href="./index.php">A propos</a></li>
         </ul>
       </div>
-
       <div class="btns">
         <button id="loginBtn" onclick="
               window.location.href = './login.php'
@@ -37,7 +39,6 @@ unset($_SESSION['currentUser']);
       </div>
     </nav>
   </header>
-
   <section class="main">
     <div class="first-section">
       <div class="text">
@@ -47,34 +48,27 @@ unset($_SESSION['currentUser']);
         <h5 class="title2">
           ICE breaking est une platforme de forum
         </h5>
-
         <form action="" class="search-form">
           <input type="search" name="" id="search-value" placeholder="Rechercher un sujet...">
           <input type="submit" value="Rechercher" id="submit-search">
         </form>
       </div>
       <div class="img-container">
-        <img src="./images/social.png" alt="">
+        <img src="./images/social.png?v=<?php echo time(); ?>" alt="">
       </div>
-
     </div>
   </section>
 
   <footer class="footer">
     <p>Developpé par: <a href="">Wassim EL BAKKOURI</a></p>
   </footer>
-
   <script>
     $(window).on("scroll", function() {
-      if ($(window).scrollTop() > 50) {
+      if ($(window).scrollTop() > 50) 
         $(".header").addClass("active-header");
-      } else {
+      else 
         $(".header").removeClass("active-header");
-      }
-
-
     });
-
     $('.search-form').submit(e => window.location.href = './forum/index.php')
   </script>
 </body>

@@ -15,5 +15,4 @@ $currentUser = unserialize($_SESSION['currentUser']);
        }
 
     }
-
 ?>

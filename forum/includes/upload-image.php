@@ -3,9 +3,7 @@
      include '../../includes/modals/user.php' ;
      session_start() ;
      $currentUser = unserialize($_SESSION['currentUser']);
-
- 
- 
+     
      $picture = $_FILES['pictureFile'] ;
      if(isset($picture)) {
        

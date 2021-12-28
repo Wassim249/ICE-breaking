@@ -1,8 +1,6 @@
 <?php
 include '../includes/modals/user.php';
 
-
-
 session_start();
 if (isset($_SESSION['currentUser']))
   $currentUser = unserialize($_SESSION['currentUser']);
@@ -18,11 +16,13 @@ else
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>ICE BREAKING | Acceuil</title>
   <link rel="stylesheet" href="./css/main.css?v=<?php echo time(); ?>" />
   <link rel="stylesheet" href="./css/index.css?v=<?php echo time(); ?>" />
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <script src="./js/main.js"></script>
+  <script src="//code.tidio.co/lf2zoxxvg8n9kzfqykb21xczwpmijivb.js" async></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 

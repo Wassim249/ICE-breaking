@@ -1,19 +1,6 @@
-:root {
-  --light-blue: #daf6fc;
-  --primary: #0b70dd;
-  --light-primary: #10b3d6;
-  --dark-blue: #3d445b;
-  --secondary: #e92b5f;
-  --light-secondary: #f1a8bd;
-}
-
-.main {
-  margin: 180px 6%;
-  height: 100vh;
-}
-
 .main {
   margin: 10% 6%;
+  height: 100vh;
 }
 
 .section1 {

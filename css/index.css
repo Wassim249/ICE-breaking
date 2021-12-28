@@ -18,7 +18,7 @@
 }
 
 .img-container img {
-    width: 50vw;
+    width: 40vw;
 }
 
 .title1 {
@@ -54,7 +54,7 @@
     width: 25%;
     height: 100%;
     padding: 2vh 1vw;
-    background-color: #0b70dd;
+    background-color: var(--primary);
     color: white;
     border: none;
     border-radius: .5rem;

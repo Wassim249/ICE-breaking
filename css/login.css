@@ -1,12 +1,3 @@
-:root {
-  --light-blue: #daf6fc;
-  --primary: #0b70dd;
-  --light-primary: #10b3d6;
-  --dark-blue: #3d445b;
-  --secondary: #e92b5f;
-  --light-secondary: #e92b5f;
-}
-
 .section1 {
   height: 80vh;
   display: flex;
